@@ -1,0 +1,1733 @@
+/* style.css */
+
+/* --- 基本スタイル (変更なし) --- */
+body { margin: 0; font-family: 'Noto Sans JP', sans-serif; line-height: 1.6; color: #333; background-color: #fff; }
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; vertical-align: middle; }
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; padding: 0; margin: 0; }
+button { background: none; border: none; padding: 0; cursor: pointer; }
+
+/* --- ヘッダースタイル (モバイル表示最優先で大幅見直し) --- */
+.site-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.header-container {
+    margin: 0 auto;
+    padding: 0 0 0 10px; /* モバイルの左右パディングを少し詰める */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px; /* モバイルヘッダーの高さをさらにコンパクトに */
+}
+
+.wrapper{
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+}
+
+.logo-area img {
+    height: 24px; /* モバイルでのロゴの高さ */
+    width: auto;
+    display: block;
+}
+
+/* PC用ナビとボタンは完全に非表示 (メディアクエリで制御) */
+.navigation-menu-pc,
+.header-buttons-pc {
+    display: none;
+}
+
+/* モバイル用ヘッダー右側のボタン群 */
+.header-buttons-mobile {
+    display: flex;
+    align-items: stretch;
+}
+
+.header-buttons-mobile .button-document-mobile,
+.header-buttons-mobile .hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;  /* ボタンの幅を見本に合わせて少し広げる */
+    height: 60px; /* ヘッダーの高さに合わせる */
+    padding: 6px 4px; /* 上下パディングを少し増やし、左右は微調整 */
+    font-size: 11px; /* テキストサイズを少し大きく */
+    font-weight: 700; /* テキストを太めに */
+    line-height: 1.2;
+    color: #ffffff !important; /* !important で色の優先度を上げる */
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    cursor: pointer;
+}
+.header-buttons-mobile .button-document-mobile { /* 資料請求ボタン */
+    border-right: 1px solid rgba(255,255,255,0.15); /* 区切り線を少し薄く */
+}
+
+.header-buttons-mobile .button-icon {
+    display: block; /* 回り込み防止 */
+    height: 24px;       /* アイコンの高さを少し大きく */
+    width: 24px;        /* アイコンの幅も指定 */
+    margin: 0 auto 3px auto; /* 下マージンを少し増やす */
+    filter: brightness(0) invert(1); 
+}
+.header-buttons-mobile .hamburger-icon span { /* ボタン内テキスト */
+    display: block;
+    color: #ffffff !important;
+    font-size: 10px;
+    line-height: 1.15;
+    text-align: center;
+    margin-top: 0;
+}
+
+.header-buttons-mobile .button-document-mobile {
+    background-color: #ec8316; /* オレンジ */
+}
+
+.header-buttons-mobile .hamburger-icon {
+    background-color: #003d6c; /* 濃い紺色 */
+}
+
+/* --- モバイル用スライドメニュー (前回提案のスタイルをベースに微調整) --- */
+.mobile-slide-menu {
+    position: fixed; top: 0; right: -100%;
+    width: 100%; max-width: 280px; height: 100vh;
+    background-color: #fff; /* 背景は不透明な白に */
+    z-index: 2000; transition: right 0.35s ease-in-out;
+    padding: 20px; box-shadow: -2px 0px 8px rgba(0,0,0,0.15);
+    display: flex; flex-direction: column;
+}
+.mobile-slide-menu.active { right: 0; }
+
+.close-menu-button {
+    position: absolute; top: 10px; right: 15px;
+    font-size: 30px; color: #555; /* ×ボタンの色 */
+    background: none; border: none; cursor: pointer; padding: 5px; line-height: 1;
+}
+.close-menu-button:hover { color: #000; }
+
+.mobile-slide-menu nav { margin-top: 40px; flex-grow: 1; }
+.mobile-slide-menu nav ul li a {
+    display: block; padding: 12px 5px; font-size: 17px; /* 文字サイズ少し調整 */
+    color: #333; font-weight: 700; border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+}
+.mobile-slide-menu nav ul li a:hover { background-color: #f5f5f5; }
+.mobile-slide-menu nav ul li:last-child a { border-bottom: none; }
+
+.mobile-menu-buttons { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+.mobile-menu-buttons .button {
+    width: 100%; padding: 12px; font-size: 15px; border-radius: 5px;
+    font-weight: 700; text-align: center; display: flex; align-items: center;
+    justify-content: center; gap: 8px;
+}
+.mobile-menu-buttons .button-document-mobile-menu { background-color: #ec8316; color: #fff; }
+.mobile-menu-buttons .button-contact-mobile-menu { background-color: #005c78; color: #fff; }
+.mobile-menu-buttons .button-icon { height: 1em; width: auto; filter: brightness(0) invert(1); margin-right: 0; }
+
+.mobile-menu-footer-logo { text-align: center; margin-top: auto; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+.mobile-menu-footer-logo img { height: 22px; }
+
+
+/* --- ブレークポイント (タブレット iPad Proサイズ以上でPC表示に切り替え) --- */
+/* 例: 992pxをブレークポイントとする */
+@media screen and (min-width: 992px) {
+    .header-container {
+        height: 80px; /* PCヘッダーの高さ */
+    }
+    .logo-area img {
+        height: 35px; /* PCでのロゴサイズ */
+    }
+
+    .navigation-menu-pc {
+        display: flex; /* PC用ナビ表示 */
+    }
+    .navigation-menu-pc ul {
+        display: flex; align-items: center; gap: 16px;
+    }
+    .navigation-menu-pc ul li a {
+        color: #303439; font-size: 14px; font-weight: 700;
+        padding-bottom: 5px; position: relative; text-decoration: none;
+    }
+    .navigation-menu-pc ul li a:hover::after {
+        content: ''; position: absolute; left: 0; bottom: 0;
+        width: 100%; height: 2px; background-color: #383f49;
+    }
+
+    .header-buttons-pc {
+        display: flex; /* PC用ボタン表示 */
+        align-items: center;
+        height: 100%;
+    }
+    .header-buttons-pc .button {
+        padding: 10px 20px; font-size: 14px; font-weight: 700;
+        height: 100%;
+        display: flex; align-items: center; gap: 8px;
+        color: #fff; transition: background-color 0.3s ease;
+    }
+    .header-buttons-pc .button-document { background-color: #ec8316; }
+    .header-buttons-pc .button-contact { background-color: #005c78; }
+    .header-buttons-pc .button-icon { height: 1.1em; width: auto; filter: brightness(0) invert(1); }
+
+    .header-buttons-mobile {
+        display: none; /* PCではモバイル用ボタン群を完全に隠す */
+    }
+    .mobile-slide-menu { /* PCではスライドメニューも表示させない */
+        display: none !important; /* JavaScriptでactiveが付いても見えないように */
+    }
+}
+
+/* --- ファーストビュー（ヒーローセクション）スタイル (レイアウト・空白最終調整版) --- */
+.hero-section {
+    padding-top: 60px; /* ヘッダー分 */
+    padding-bottom: 10px;
+    position: relative;
+    background-color: #e9f2fa; /* フォールバック */
+    display: flex;
+    flex-direction: column; /* 子要素 .hero-content-container を垂直方向に中央揃えするため */
+    justify-content: center; /* 垂直方向中央揃え */
+    align-items: center;     /* 水平方向中央揃え */
+    min-height: calc(100vh - 60px);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.hero-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/s-2400x1067_v-frms_webp_918b4bbb-4df0-4286-9078-2d27630ed26b_regular.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0.85;
+}
+
+.hero-content-container {
+    max-width: 1050px; /* 修正: PC時の最大幅を少し調整 */
+    width: 90%;
+    margin: 0 auto; /* コンテナ自体を中央に */
+    padding: 5px 0; /* 修正: 上下パディングを極力詰める */
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* 中の要素も中央揃えの基点に */
+}
+
+.hero-main-title {
+    font-weight: 900;
+    color: #0A2A4A;
+    line-height: 1.25;
+    margin-top: 0;
+    margin-bottom: 5px; /* 修正: タイトルとロゴの間隔 */
+    text-shadow: 0px 1px 1px rgba(255,255,255,0.6);
+    /* フォントサイズはメディアクエリで制御 */
+}
+
+.hero-main-content {
+    display: flex;
+    flex-direction: column; /* モバイルでは縦積み (デフォルト) */
+    gap: 5px; /* 修正: モバイルでの主要要素間の隙間 */
+    align-items: center;
+    width: 100%;
+}
+
+.hero-image-and-text { /* ロゴ、イラスト、キャプションのまとまり */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 420px; /* 修正: モバイルでの最大幅を調整 */
+    margin-bottom: 5px; /* 修正: 下のフォーム/ボタンエリアとの間隔 */
+}
+
+.hero-logos {
+    margin-bottom: 3px; /* ロゴ(画像群)とメインイラストの間隔 */
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logos img.hero-bolt-logo {
+    height: auto;
+    width: auto;
+    max-width: 110px; /* 修正: モバイルでのロゴ */
+    object-fit: contain;
+}
+
+.hero-main-image-container {
+    margin-bottom: 3px; /* メインイラストとキャプションの間隔 */
+    width: 100%;
+}
+
+.hero-main-illust {
+    width: 100%;
+    max-width: 180px; /* 修正: モバイルでのイラスト */
+    border-radius: 6px;
+    display: block;
+    margin: 0 auto;
+}
+
+.hero-image-caption {
+    font-size: 13px ; /* モバイルのベース */
+    font-weight: 700;
+    color: #303439;
+    margin-top: 3px;
+    line-height: 1.3;
+    max-width: 90%;
+    padding: 0 5px; /* 追加: 左右に少しパディングして窮屈さを軽減 */
+    box-sizing: border-box; /* 追加 */
+}
+
+/* (モバイルボタンエリア、フォームエリアのスタイルは変更なしのため省略します) */
+.hero-mobile-button-area { display: none; flex-direction: column; align-items: center; gap: 10px; width: 100%; max-width: 300px; margin-top: 8px; }
+.hero-mobile-button-area .button { display: block; padding: 10px 15px; border-radius: 5px; font-size: 14px; font-weight: 700; text-align: center; color: #fff; transition: background-color 0.3s ease; width: 100%; box-sizing: border-box; }
+.hero-mobile-button-area .button-document-hero-mobile { background-color: #ec8316; }
+.hero-mobile-button-area .button-contact-hero-mobile { background-color: #005c78; }
+
+.hero-form-area { display: none; flex-direction: column; width: 100%; max-width: 380px; background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.08); color: #333; text-align: left; }
+.hero-form-area .form-title { font-size: 17px; font-weight: 700; color: #ec8316; margin-bottom: 4px; text-align: center; }
+.hero-form-area .form-description { font-size: 11px; color: #555; margin-bottom: 8px; text-align: center; }
+#hubspotFormContainerHero p { background-color: #f9f9f9; padding: 10px; font-size: 11px; }
+.hero-form-area .button-contact-hero { display: none; }
+
+
+/* --- ファーストビュー レスポンシブ切り替え --- */
+
+@media screen and (max-width: 767px) { /* スマートフォン */
+    .hero-section {
+        padding-top: 60px;
+        padding-bottom: 10px; /* 修正 */
+        min-height: calc(100vh - 60px);
+        justify-content: center;
+    }
+    .hero-main-title {
+        font-size: 26px;
+        margin-bottom: 5px;
+    }
+    .hero-main-content {
+        gap: 5px;
+    }
+    .hero-logos img.hero-bolt-logo { max-width: 100px; /* 修正 */ }
+    .hero-main-illust { max-width: 160px; /* 修正 */ }
+    .hero-image-caption { font-size: 18px /* 修正 */ }
+
+    .hero-form-area { display: none !important; }
+    .hero-mobile-button-area { display: flex; margin-top: 8px; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) { /* タブレット */
+    .hero-section {
+        padding-top: 70px;
+        padding-bottom: 15px; /* 修正 */
+        min-height: calc(100vh - 70px);
+        justify-content: center;
+    }
+    .hero-main-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    .hero-main-content { gap: 10px; }
+    .hero-image-and-text {
+        max-width: 380px; /* 修正 */
+        margin-bottom: 8px;
+    }
+    .hero-logos img.hero-bolt-logo { max-width: 130px; /* 修正 */ }
+    .hero-main-illust { max-width: 260px; /* 修正 */ }
+    .hero-image-caption { font-size: 14px ; /* 修正 */ }
+
+    .hero-form-area { display: none !important; }
+    .hero-mobile-button-area { display: flex; margin-top: 8px; }
+}
+
+@media screen and (min-width: 1024px) { /* PC */
+    .hero-section {
+        padding-top: 80px;
+        padding-bottom: 20px; /* 修正 */
+        min-height: calc(100vh - 80px);
+        justify-content: center;
+    }
+    .hero-content-container {
+        padding: 0; /* ★修正: PCでのヒーローコンテンツ全体の上下パディングを0に */
+        width: 100%; /* 修正: 横幅を100%にして、中のmain-contentで制御 */
+        max-width: 1050px;
+        justify-content: center; /* 追加 */
+        align-items: center; /* 追加 */
+    }
+    .hero-main-title {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+    .hero-main-content {
+        flex-direction: row;
+        gap: 20px;
+        align-items: center; /* ★重要: カラムの高さを揃える（またはflex-startで上揃え） */
+        justify-content: center; /* ★重要: 左右のカラムを中央に寄せる */
+        width: 100%;
+        max-width: 1050px; /* 追加: 見本LPの横幅感に合わせる */
+        margin: 0 auto; /* 追加: 中央揃え */
+    }
+    .hero-image-and-text { /* 左カラム */
+        flex: 1 1 55%; /* 修正: 左カラムの割合 */
+        max-width: 500px; /* 追加: 左カラムの最大幅を設定してバランスを取る */
+        align-items: center;
+        text-align: center;
+        padding-right: 0; /* 修正: gapで管理するので不要 */
+        margin-bottom: 0;
+    }
+    .hero-logos {
+        margin-bottom: 8px;
+    }
+    .hero-logos img.hero-bolt-logo {
+        max-width: 180px; /* 修正 */
+    }
+    .hero-main-image-container {
+        margin-bottom: 5px;
+    }
+    .hero-main-illust {
+        max-width: 380px; /* 修正 */
+        margin: 0 auto 5px auto;
+    }
+    .hero-image-caption {
+        font-size: 20px ; /* 修正 */
+        font-weight: 700;
+        line-height: 1.4;
+        color: #303439;
+        padding: 0 10px; /* 追加 */
+    }
+
+    .hero-form-area { /* 右カラム */
+        display: flex !important;
+        flex-direction: column;
+        flex: 1 1 40%; /* 修正: 右カラムの割合 */
+        max-width: 380px;
+        padding: 20px;
+        justify-content: center; /* 追加: フォーム内の要素を垂直中央に（フォーム自体の高さによる）*/
+    }
+    .hero-form-area .form-title { font-size: 18px; margin-bottom: 4px; }
+    .hero-form-area .form-description { font-size: 11px; margin-bottom: 8px; }
+    #hubspotFormContainerHero p { padding: 10px; font-size: 11px; }
+
+    .hero-mobile-button-area { display: none !important; }
+    .hero-form-area .button-contact-hero { display: none !important; }
+}
+
+/* HubSpotフォームコンテナのスタイル調整 */
+#hubspotFormContainerHero {
+    max-height: 400px; /* ★フォームを表示するボックスの最大の高さを指定 (例: 400px) */
+    overflow-y: auto;  /* ★縦方向に内容がはみ出た場合にスクロールバーを表示 */
+    padding: 10px; /* 任意: 内側の余白 */
+    box-sizing: border-box;
+}
+
+#hubspotFormContainerDocument {
+    overflow-y: auto;  /* ★縦方向に内容がはみ出た場合にスクロールバーを表示 */
+    padding: 10px; /* 任意: 内側の余白 */
+    box-sizing: border-box;
+}
+
+/* HubSpotフォームが生成するiframeに対するスタイル（より直接的な指定） */
+/* HubSpotのiframeには特定のIDやクラスが付与される場合があります。
+   開発者ツールで実際のiframeのセレクタを確認して調整すると、より確実です。 */
+#hubspotFormContainerHero iframe,
+#hubspotFormContainerDocument iframe {
+    width: 100% !important; /* 横幅はコンテナに合わせる */
+    /* HubSpot側で高さがインラインスタイルで指定される場合があり、
+       CSSでの高さ制御が難しいことがあります。
+       上記コンテナのmax-heightとoverflow-yで対応するのが一般的です。 */
+    /* height: auto !important; */ /* HubSpotの自動調整に任せる場合 */
+}
+/* --- Problems Section (修正版) --- */
+.problems-section {
+    padding: 80px 20px; /* 上下の余白を多めに */
+    background-color: #f0f3f9; /* 見本LPの背景色 */
+    text-align: center;
+}
+
+.problems-section .section-title-container {
+    margin-bottom: 60px; /* タイトルとカード群の間隔を広げる */
+}
+
+.problems-section .section-subtitle { /* "PROBLEMS" の文字 */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* 英字用のフォント候補、太めで特徴的なものがあれば置き換え */
+    font-size: 36px; /* 見本に合わせて大きめに */
+    font-weight: 900; /* 極太 */
+    color: #fae3cb; /* 見本の薄いオレンジ色 */
+    text-transform: uppercase;
+    margin-bottom: -10px; /* メインタイトルとの重なり具合調整 */
+    line-height: 1;
+}
+
+.problems-section .section-main-title { /* 「システム開発でこんなお悩み、ありませんか？」 */
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #303439;
+    line-height: 1.5; /* 行間を少し広げる */
+}
+
+.problems-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px; /* カード間の隙間を見本に合わせる */
+    flex-wrap: wrap;
+    max-width: 1000px; /* 全体の幅を見本に合わせる */
+    margin: 0 auto;
+}
+
+.problem-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 15px 25px rgba(0, 66, 164, 0.15); /* 影を少し調整 */
+    padding: 30px; /* 内側の余白 */
+    width: calc(33.333% - 16px); /* gap 24pxの場合の計算 (24 * 2/3) */
+    min-width: 270px;
+    max-width: 310px; /* スクリーンショットのカードの幅感を参考に */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* カード内のテキストも中央揃え */
+}
+
+.problem-card img {
+    height: 180px; /* イラストの高さ、見本に合わせて調整 */
+    margin-bottom: 25px; /* 画像とタイトルの間隔 */
+    object-fit: contain;
+}
+
+.problem-card-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px; /* 見本に合わせて少し小さく */
+    font-weight: 900;
+    color: #e88d67; /* 見本のオレンジ系の色 */
+    line-height: 1.4;
+    margin-top: auto; /* これでタイトルが画像から離れすぎないように */
+}
+
+/* Problems Section レスポンシブ対応 */
+@media screen and (max-width: 992px) { /* タブレットサイズなど */
+    .problems-card-container {
+        gap: 20px;
+    }
+    .problem-card {
+        width: calc(50% - 10px); /* 2列表示 (gap 20pxの場合) */
+        max-width: 340px;
+        padding: 25px;
+    }
+    .problems-section .section-main-title {
+        font-size: 28px;
+    }
+    .problems-section .section-subtitle {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 600px) { /* スマートフォンサイズ */
+    .problems-section {
+        padding: 50px 20px;
+    }
+    .problems-section .section-title-container {
+        margin-bottom: 40px;
+    }
+    .problem-card {
+        width: 100%; /* 1列表示 */
+        max-width: 350px; /* スマホでのカード最大幅 */
+        padding: 20px;
+        margin-bottom: 20px; /* 縦積みの際の間隔 */
+    }
+    .problem-card:last-child {
+        margin-bottom: 0;
+    }
+    .problem-card img {
+        height: 140px;
+        margin-bottom: 20px;
+    }
+    .problem-card-title {
+        font-size: 18px;
+    }
+    .problems-section .section-main-title {
+        font-size: 24px;
+    }
+    .problems-section .section-subtitle {
+        font-size: 28px;
+    }
+}
+/* --- Solution Section (リッチデザイン調整版) --- */
+.solution-section {
+    background-color: #f0f3f9; /* 背景色を維持 */
+    padding: 60px 20px; /* 上下の余白を少し増やす */
+    text-align: center;
+}
+
+.solution-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* 矢印とテキストの間隔を少し調整 */
+}
+
+.solution-arrow-deco {
+    height: 60px; /* 少し大きく */
+    width: auto;
+    opacity: 0.7; /* 少し柔らかい印象に */
+}
+
+.solution-text {
+    font-size: 32px; /* 少し大きく、より目立つように */
+    font-weight: 900; /* 極太でインパクトを出す */
+    color: #003d6c; /* 見本LPのメインタイトルに近い濃い青系で統一感を出す */
+    line-height: 1.5;
+    padding: 0 20px;
+    margin-top: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 微細なテキストシャドウで立体感を */
+}
+
+/* Solution Section レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .solution-text {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .solution-section {
+        padding: 50px 20px;
+    }
+    .solution-text {
+        font-size: 24px;
+    }
+    .solution-arrow-deco {
+        height: 50px;
+    }
+}
+/* --- Insourcing Info Section (リッチデザイン調整版) --- */
+.insourcing-info-section {
+    padding: 80px 20px; /* 上下の余白を増やす */
+    background-color: #fff;
+    text-align: center;
+}
+
+.insourcing-info-section .section-main-title {
+    color: #303439;
+    font-size: 34px; /* 少し大きく */
+    font-weight: 900;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.insourcing-info-section .section-subtitle-large { /* "INSOURCING" */
+    font-family: 'Arial Black', 'Impact', sans-serif; /* より太くインパクトのある英字フォント候補 */
+    font-size: 52px; /* さらに大きく */
+    color: #f0e6d1; /* 元の #fae3cb より少し落ち着いた色に調整 */
+    letter-spacing: 2px; /* 文字間を少し広げる */
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 900; /* 極太 */
+}
+
+.insourcing-description {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a; /* 少し濃いめのグレーで可読性向上 */
+    max-width: 780px;
+    margin: 0 auto 40px auto;
+    line-height: 1.9; /* 行間を広げて読みやすく */
+    text-align: left;
+}
+
+.insourcing-sub-heading { /* 「ローコード開発とは？」 */
+    font-size: 24px;
+    font-weight: 700;
+    color: #e07c49; /* 元の #ec8316 より少し柔らかいオレンジ */
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.insourcing-image {
+    max-width: 650px;
+    border-radius: 12px; /* 角丸を少し大きく */
+    margin-bottom: 25px;
+}
+
+.insourcing-detail {
+    font-size: 17px; /* 少し大きく */
+    font-weight: 500;
+    color: #4a4a4a;
+    max-width: 780px;
+    margin: 0 auto;
+    line-height: 1.9;
+    text-align: left;
+}
+
+/* Insourcing Info Section レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .insourcing-info-section {
+        padding: 60px 20px;
+    }
+    .insourcing-info-section .section-main-title {
+        font-size: 30px;
+    }
+    .insourcing-info-section .section-subtitle-large {
+        font-size: 44px;
+    }
+    .insourcing-description,
+    .insourcing-detail {
+        font-size: 16px;
+        text-align: left; /* スマホでも左揃えのままも可 */
+        padding: 0 10px; /* 左右に少しパディング */
+    }
+    .insourcing-sub-heading {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .insourcing-info-section .section-main-title {
+        font-size: 26px;
+    }
+    .insourcing-info-section .section-subtitle-large {
+        font-size: 36px;
+        letter-spacing: 1px;
+    }
+    .insourcing-description,
+    .insourcing-detail {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+    .insourcing-sub-heading {
+        font-size: 20px;
+    }
+    .insourcing-image {
+        max-width: 90%;
+    }
+}
+/* --- Features Section (リッチデザイン調整版) --- */
+.features-section {
+    padding: 80px 20px;
+    background-color: #f8fbff; /* 明るいオフホワイト系の背景 */
+}
+
+.features-section .section-main-title {
+    color: #303439;
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.features-section .section-subtitle-large { /* "FEATURES" */
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 52px;
+    color: #f0e6d1;
+    letter-spacing: 2px;
+    margin-bottom: 60px; /* 次の要素との間隔を広めに */
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center; /* 画像とテキストを垂直中央揃え */
+    gap: 50px; /* 画像とテキストの間の隙間を広げる */
+    margin-bottom: 70px; /* 各特徴アイテム間の余白 */
+    max-width: 1000px; /* コンテンツの最大幅 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-item:last-child {
+    margin-bottom: 0;
+}
+
+.feature-item.feature-item-reverse { /* 画像とテキストの順序を反転 */
+    flex-direction: row-reverse;
+}
+
+.feature-image-area {
+    flex: 1 1 45%; /* 画像エリアの幅の割合 */
+    text-align: center; /* 画像を中央に配置 */
+}
+
+.feature-image-area img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-text-area {
+    flex: 1 1 55%; /* テキストエリアの幅の割合 */
+    text-align: left;
+}
+
+.feature-title {
+    font-size: 26px;
+    font-weight: 900;
+    color: #242528; /* 少し濃いめの見出し色 */
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.feature-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+}
+
+
+/* Features Section レスポンシブ対応 */
+@media screen and (max-width: 992px) {
+    .feature-item,
+    .feature-item.feature-item-reverse {
+        flex-direction: column; /* 縦積みに変更 */
+        text-align: center; /* 全体的に中央揃えに */
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+    .feature-image-area,
+    .feature-text-area {
+        flex-basis: auto; /* 幅の割合指定をリセット */
+        width: 100%;
+        max-width: 500px; /* スマホでの最大幅 */
+        text-align: center;
+    }
+    .feature-text-area {
+        text-align: left; /* テキストは左揃えのままも可 */
+    }
+    .features-section .section-main-title {
+        font-size: 30px;
+    }
+    .features-section .section-subtitle-large {
+        font-size: 44px;
+        margin-bottom: 40px;
+    }
+    .feature-title {
+        font-size: 22px;
+        text-align: center; /* スマホではタイトルも中央揃え */
+    }
+    .feature-description {
+        font-size: 15px;
+        text-align: center; /* スマホでは説明文も中央揃え */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .features-section {
+        padding: 60px 20px;
+    }
+    .features-section .section-main-title {
+        font-size: 26px;
+    }
+    .features-section .section-subtitle-large {
+        font-size: 36px;
+    }
+    .feature-title {
+        font-size: 20px;
+    }
+}
+/* --- Prices Section (リッチデザイン調整版) --- */
+.prices-section {
+    padding: 80px 20px;
+    background-color: #f8f7f6; /* 見本LPの背景色に近い、少し暖かみのあるオフホワイト */
+    /* 元のLPのグラデーション背景は複雑なので、ここでは単色かシンプルなグラデーションを推奨 */
+    /* background: linear-gradient(180deg, rgba(248, 247, 246, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%); */
+}
+
+.prices-section .section-main-title {
+    color: #303439;
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.prices-section .section-subtitle-large { /* "PRICES" */
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 52px;
+    color: #f0e6d1; /* 前のセクションの装飾テキスト色と合わせる */
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+}
+
+.price-plans-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* カードの高さを揃える（中のコンテンツ量に依存） */
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.price-plan-card {
+    background-color: #fff;
+    border-radius: 10px; /* 角丸を少しだけ大きく */
+    box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.08); /* 影を少し柔らかく、広めに */
+    padding: 40px; /* 内側の余白を増やす */
+    width: calc(33.333% - 20px); /* gap 30pxの場合 (30 * 2/3) */
+    min-width: 280px;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバーエフェクト用 */
+    position: relative; /* おすすめバッジのため */
+    overflow: hidden; /* バッジがはみ出ないように */
+    overflow: visible; 
+    position: relative; 
+}
+
+.price-plan-card:hover {
+    transform: translateY(-8px); /* ホバー時に少し浮き上がる */
+    box-shadow: 0px 18px 35px rgba(0, 0, 0, 0.1);
+}
+
+.recommend-badge {
+    background-color: #000; /* 見本LPの「おすすめ」バッジは黒背景 */
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    border-radius: 50%; /* 丸みのあるバッジ */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: -30px; /* カードの上部に少しはみ出す */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: absolute;
+    top: -30px; /* カードの上部に少しはみ出す */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* カードより手前に表示 */
+}
+/* スタンダードプランのみにバッジを付ける場合、HTML側で .price-plan-card.recommended-plan のようにして、
+   CSSで .recommended-plan .recommend-badge を display:block にするなどの工夫もできます */
+
+.plan-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 15px; /* おすすめバッジがある場合の間隔調整 */
+}
+
+.price-plan-card.recommended-plan .plan-name {
+    margin-top: 30px; /* おすすめバッジがある場合のプラン名の上部マージン */
+}
+
+
+.plan-price-area {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline; /* ¥マークと金額のベースラインを揃える */
+}
+
+.plan-price {
+    font-size: 48px; /* 金額を大きく */
+    font-weight: 600; /* 少し太く */
+    color: #000;
+    line-height: 1;
+}
+
+.plan-per-month {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-left: 5px;
+}
+
+.plan-features {
+    text-align: left;
+    margin-bottom: 30px; /* 下のボタンとの間隔 */
+    flex-grow: 1; /* カードの高さを揃えた場合に、リストが伸びるように */
+}
+
+.plan-features li {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start; /* アイコンとテキストの縦位置調整 */
+}
+
+.plan-features li:last-child {
+    margin-bottom: 0;
+}
+
+.check-icon {
+    color: #005c78; /* チェックアイコンの色を濃い青に */
+    margin-right: 10px;
+    font-weight: bold; /* ✔ マークを少し太く */
+    flex-shrink: 0; /* アイコンが縮まないように */
+}
+
+/* Prices Section レスポンシブ対応 */
+@media screen and (max-width: 992px) {
+    .price-plan-card {
+        width: calc(50% - 15px); /* 2列表示 */
+        max-width: 360px;
+        margin-bottom: 30px; /* 縦に並ぶ際の間隔 */
+    }
+    .price-plans-container {
+        gap: 30px; /* 2列時のカード間隔 */
+    }
+    .prices-section .section-main-title {
+        font-size: 30px;
+    }
+    .prices-section .section-subtitle-large {
+        font-size: 44px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 680px) { /* スマホとタブレットの中間あたりでも調整 */
+    .price-plan-card {
+        width: 100%; /* 1列表示 */
+        max-width: 400px; /* スマホでのカード最大幅 */
+        padding: 30px;
+    }
+    .plan-price {
+        font-size: 42px;
+    }
+    .plan-features li {
+        font-size: 14px;
+    }
+}
+/* --- CTA Section (リッチデザイン調整版) --- */
+.cta-section {
+    background-color: #003d97; /* 見本LPの濃い青背景 */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cta-title {
+    font-size: 28px; /* 少し大きめに */
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 35px;
+    line-height: 1.4;
+}
+
+.cta-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* ボタン間の隙間 */
+    flex-wrap: wrap; /* スマホでボタンが縦になるように */
+}
+
+.button-document-cta,
+.button-contact-cta {
+    padding: 18px 35px; /* ボタンを大きく */
+    border-radius: 48px; /* 丸みのあるボタン */
+    font-size: 18px;
+    font-weight: 900; /* 太字で目立たせる */
+    min-width: 300px; /* ボタンの最小幅 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.button-document-cta {
+    background-color: #ec8316; /* オレンジ */
+    color: #fff;
+    border: 2px solid #fff; /* 白い枠線を追加してアクセントに */
+}
+.button-document-cta:hover {
+    background-color: #d47305;
+    border-color: #f0f0f0;
+}
+
+.button-contact-cta {
+    background-color: transparent; /* 背景透明 */
+    color: #fff;
+    border: 2px solid #fff; /* 白い枠線 */
+}
+.button-contact-cta:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* ホバー時に少し白っぽく */
+}
+
+.button-contact-cta .button-icon,
+.button-document-cta .button-icon {
+    filter: brightness(0) invert(1); /* アイコンを白抜きにする (SVGやPNG画像の場合) */
+    height: 1.1em; /* アイコンサイズ調整 */
+}
+
+/* CTA Section レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .cta-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    .button-document-cta,
+    .button-contact-cta {
+        font-size: 16px;
+        padding: 15px 30px;
+        min-width: 260px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .cta-buttons-container {
+        flex-direction: column; /* スマホではボタンを縦積みに */
+        gap: 15px;
+    }
+    .button-document-cta,
+    .button-contact-cta {
+        width: 100%; /* ボタン幅を画面いっぱいに */
+        max-width: 320px; /* 最大幅は設ける */
+    }
+}
+/* --- Flow Section (ご利用の流れ) --- */
+.flow-section {
+    padding: 80px 20px;
+    background-color: #fff; /* 背景を白に戻す */
+}
+
+.flow-section .section-main-title {
+    color: #303439;
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.flow-section .section-subtitle-large { /* "FLOW" */
+    font-family: 'Arial Black', 'Impact', sans-serif; /* 太めの英字フォント */
+    font-size: 52px;
+    color: #f0e6d1; /* 装飾テキストの色 */
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+}
+
+.flow-steps-container {
+    max-width: 800px; /* ステップ全体の最大幅 */
+    margin: 0 auto; /* 中央寄せ */
+    display: flex;
+    flex-direction: column; /* ステップを縦に並べる */
+    align-items: center; /* 中央揃え */
+}
+
+.flow-step {
+    display: flex;
+    align-items: flex-start; /* 番号と内容の上端を揃える */
+    gap: 25px; /* 番号と内容の間隔 */
+    width: 100%; /* 横幅いっぱいを使う */
+    margin-bottom: 20px; /* 各ステップ間の下マージン */
+    background-color: #ffffff; /* 各ステップの背景を白に（セクション背景が#fffなら不要） */
+    padding: 25px; /* ステップの内側の余白 */
+    border-radius: 8px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.07); /* 軽い影 */
+    border: 1px solid #eee; /* 細い枠線 */
+}
+
+.flow-step-number {
+    background-color: #acacac;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 900;
+    width: 60px;  /* 固定幅 */
+    height: 60px; /* 固定高さ */
+    border-radius: 50%;
+    display: flex;
+    align-items: center; /* 上下中央揃え */
+    justify-content: center; /* 左右中央揃え */
+    flex-shrink: 0; /* 親要素がflexの場合に縮まないように */
+}
+
+.flow-step-content {
+    flex: 1; /* 残りの幅をすべて使う */
+    text-align: left;
+}
+
+.flow-step-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.flow-step-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.flow-arrow-down {
+    font-size: 30px; /* 矢印の大きさ */
+    color: #acacac; /* 矢印の色 */
+    margin: 10px 0 25px 0; /* 矢印の上下マージン */
+    font-weight: bold;
+}
+
+/* Flow Section レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .flow-section {
+        padding: 60px 20px;
+    }
+    .flow-section .section-main-title {
+        font-size: 30px;
+    }
+    .flow-section .section-subtitle-large {
+        font-size: 44px;
+        margin-bottom: 50px;
+    }
+    .flow-step {
+        padding: 20px;
+        gap: 20px;
+    }
+    .flow-step-number {
+        font-size: 30px;
+        min-width: 50px;
+        
+    }
+    .flow-step-title {
+        font-size: 20px;
+    }
+    .flow-step-description {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .flow-step {
+        flex-direction: column; /* スマホでは番号と内容を縦積みに */
+        align-items: center; /* 中央揃え */
+        text-align: center;
+        gap: 15px;
+    }
+    .flow-step-content {
+        text-align: center; /* 内容も中央揃え */
+    }
+    .flow-arrow-down {
+        margin: 15px 0 20px 0;
+    }
+    .flow-section .section-main-title {
+        font-size: 26px;
+    }
+    .flow-section .section-subtitle-large {
+        font-size: 36px;
+    }
+}
+/* --- Strengths Section (ファンリピートの強み) --- */
+.strengths-section {
+    padding: 80px 20px;
+    background-color: #f0f3f9; /* 背景色をFlowセクションの白から変更 */
+}
+
+.strengths-section .section-main-title {
+    color: #303439;
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.strengths-section .section-subtitle-large { /* "OUR STRENGTHS" */
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 52px;
+    color: #f0e6d1;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+}
+
+/* style.css の .strengths-grid-container を修正 */
+.strengths-grid-container {
+    display: grid;
+    gap: 30px;
+    max-width: 800px; /* 2列表示時の全体の幅を調整 */
+    margin: 0 auto;
+    /* デスクトップなど広い画面では2列 */
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Strengths Section レスポンシブ対応の修正 */
+@media screen and (max-width: 768px) { /* タブレット縦や小さめタブレット */
+    .strengths-grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* 幅に応じて1列か2列 */
+        max-width: 600px; /* 1列や2列時の全体の幅を調整 */
+    }
+}
+
+@media screen and (max-width: 576px) { /* スマートフォン */
+    .strengths-grid-container {
+        grid-template-columns: 1fr; /* スマホでは1列 */
+        max-width: 350px; /* 1列表示時のカードの最大幅に合わせる */
+    }
+    /* カード自体のスタイルは前回提示したもので、幅は100%になるはずです */
+}
+
+.strength-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strength-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.strength-icon {
+    width: 80px; /* アイコン画像の幅 */
+    height: 80px; /* アイコン画像の高さ */
+    margin-bottom: 20px;
+    object-fit: contain; /* アイコンが歪まないように */
+    /* アイコンの色が画像自体に含まれていない場合、filterなどで調整することも可能 */
+}
+
+.strength-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.strength-description {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Strengths Section レスポンシブ対応 */
+@media screen and (max-width: 992px) {
+    .strengths-grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* タブレットでのカード最小幅調整 */
+        gap: 25px;
+    }
+    .strengths-section .section-main-title {
+        font-size: 30px;
+    }
+    .strengths-section .section-subtitle-large {
+        font-size: 44px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .strengths-section {
+        padding: 60px 20px;
+    }
+    .strengths-grid-container {
+        grid-template-columns: 1fr; /* スマホでは1列 */
+        gap: 20px;
+    }
+    .strength-card {
+        padding: 25px;
+    }
+    .strength-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 15px;
+    }
+    .strength-title {
+        font-size: 18px;
+    }
+    .strength-description {
+        font-size: 14px;
+    }
+    .strengths-section .section-main-title {
+        font-size: 26px;
+    }
+    .strengths-section .section-subtitle-large {
+        font-size: 36px;
+    }
+}
+/* --- FAQ Section (よくある質問) --- */
+.faq-section {
+    padding: 80px 20px;
+    background-color: #fff; /* 背景を白に戻す */
+}
+
+.faq-section .section-main-title {
+    color: #303439;
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.faq-section .section-subtitle-large { /* "FAQ" */
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 52px;
+    color: #f0e6d1;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+}
+
+.faq-accordion-container {
+    max-width: 800px; /* FAQ全体の最大幅 */
+    margin: 0 auto; /* 中央寄せ */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* FAQアイテム間の隙間 */
+}
+
+.faq-item {
+    background-color: #f8f9fa; /* 項目の背景色を薄いグレーに */
+    border-radius: 8px;
+    border: 1px solid #e0e0e0; /* 細い枠線 */
+}
+
+.faq-question {
+    background-color: transparent; /* ボタンの背景は親に合わせる */
+    border: none;
+    padding: 20px 25px;
+    width: 100%;
+    text-align: left;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* 質問文とアイコンを両端に */
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.faq-question:hover {
+    background-color: #f1f3f5; /* ホバー時に少し色を変える */
+}
+
+.faq-q-icon {
+    font-size: 20px;
+    font-weight: 900;
+    color: #ec8316; /* Qの文字をオレンジに */
+    margin-right: 15px;
+}
+
+.faq-toggle-icon {
+    font-size: 24px;
+    font-weight: bold;
+    color: #005c78; /* トグルアイコンの色を濃い青に */
+    transition: transform 0.3s ease; /* 開閉アニメーション */
+}
+
+.faq-answer {
+    padding: 0px 25px 20px 60px; /* Qアイコンの分左にパディングを多く取る */
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+    max-height: 0; /* 初期状態では回答を非表示 */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* スムーズな開閉アニメーション */
+}
+
+/* JavaScriptで .active クラスを .faq-item に付与した際のスタイル */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* 十分な高さを確保 (コンテンツ量によって調整) */
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.faq-item.active .faq-toggle-icon {
+    transform: rotate(45deg); /* 「+」を「×」のように見せる */
+}
+
+
+/* FAQ Section レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .faq-section {
+        padding: 60px 20px;
+    }
+    .faq-section .section-main-title {
+        font-size: 30px;
+    }
+    .faq-section .section-subtitle-large {
+        font-size: 44px;
+        margin-bottom: 50px;
+    }
+    .faq-question {
+        font-size: 17px;
+        padding: 18px 20px;
+    }
+    .faq-answer {
+        font-size: 15px;
+        padding-left: 50px; /* パディング調整 */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .faq-section .section-main-title {
+        font-size: 26px;
+    }
+    .faq-section .section-subtitle-large {
+        font-size: 36px;
+    }
+    .faq-question {
+        font-size: 16px;
+        padding: 15px;
+    }
+    .faq-q-icon {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    .faq-toggle-icon {
+        font-size: 20px;
+    }
+    .faq-answer {
+        font-size: 14px;
+        padding: 0 15px 15px 40px;
+    }
+    .faq-item.active .faq-answer {
+        padding-top: 10px;
+    }
+}
+/* --- Document Request Section (資料請求) --- */
+.document-request-section {
+    padding: 80px 20px;
+    background-color: #f0f3f9; /* 背景色 */
+}
+
+.document-request-section .section-main-title {
+    color: #303439;
+    font-size: 34px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.document-request-section .section-subtitle-large { /* "REQUEST" */
+    font-family: 'Arial Black', 'Impact', sans-serif;
+    font-size: 52px;
+    color: #f0e6d1;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+}
+
+.document-request-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* 上端揃え */
+    max-width: 1000px; /* コンテンツ全体の最大幅 */
+    margin: 0 auto; /* 中央寄せ */
+}
+
+.document-request-info {
+    flex: 1 1 55%; /* 左側情報エリアの幅 */
+    text-align: left;
+}
+
+.document-request-image-container {
+    margin-bottom: 30px;
+    text-align: center; /* 画像を中央に */
+}
+
+.document-request-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.recommend-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ec8316; /* オレンジ色 */
+    margin-bottom: 15px;
+}
+
+.recommend-list li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+    /* align-items: flex-start; */ /* 修正: これを center か baseline に変更 */
+    align-items: baseline; /* ★修正: 丸とテキストのベースラインを揃える */
+    
+}
+
+.list-bullet {
+    color: #ec8316;
+    margin-right: 8px; /* 修正: 少し詰めてみる */
+    font-size: 0.8em;  /* ★修正: 丸のサイズをテキストに対して少し小さくする */
+    line-height: 1;   /* ★修正: 丸自体の行の高さを詰める */
+    display: inline-flex; /* 追加: align-items を効かせるために */
+    align-items: center;  /* 追加: 丸を垂直中央に */
+    justify-content: center;/* 追加: 丸を水平中央に */
+    width: 1.2em;          /* 追加: 丸の占める幅を確保 (font-sizeに依存) */
+    height: 1.2em;         /* 追加: 丸の占める高さを確保 (font-sizeに依存) */
+    flex-shrink: 0;        /* 追加: 親要素がflexの場合に縮まないように */
+}
+
+.document-request-form-area {
+    flex: 1 1 45%; /* 右側フォームエリアの幅 */
+    max-width: 420px; /* フォームエリアの最大幅 */
+}
+
+/* .form-container-box, .form-title, .form-description はファーストビューのものを再利用できる想定 */
+/* もしデザインが異なる場合は、新しいクラス名を付けてスタイルを別途定義します */
+
+
+/* Document Request Section レスポンシブ対応 */
+@media screen and (max-width: 992px) {
+    .document-request-content {
+        flex-direction: column; /* 縦積みに変更 */
+        align-items: center; /* 中央揃え */
+    }
+    .document-request-info,
+    .document-request-form-area {
+        flex-basis: auto;
+        width: 100%;
+        max-width: 600px; /* スマホでの最大幅 */
+        text-align: center;
+    }
+    .document-request-info {
+        margin-bottom: 40px;
+    }
+    .recommend-list li {
+        justify-content: center; /* 中央揃え */
+    }
+    .recommend-title {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .document-request-section .section-main-title {
+        font-size: 30px;
+    }
+    .document-request-section .section-subtitle-large {
+        font-size: 44px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .document-request-section .section-main-title {
+        font-size: 26px;
+    }
+    .document-request-section .section-subtitle-large {
+        font-size: 36px;
+    }
+    .recommend-title {
+        font-size: 20px;
+    }
+    .recommend-list li {
+        font-size: 15px;
+    }
+}
+/* --- Footer Section --- */
+.site-footer {
+    background-color: #f8f7f6; /* フッターの背景色 */
+    padding: 40px 40px;
+    font-size: 14px; /* フッター全体の基本フォントサイズ */
+    color: #555; /* フッターの基本文字色 */
+    border-top: 1px solid #ddd; /* 上部に区切り線 */
+}
+
+.footer-container {
+    margin: 0 auto 20px auto; /* 中央寄せと下のコピーライトとの間隔 */
+    display: flex;
+    justify-content: space-between; /* ロゴとリンクを両端に */
+    align-items: center;
+    flex-wrap: wrap; /* スマホで折り返すように */
+    gap: 20px;
+}
+
+.footer-logo-area img {
+    height: 30px; /* フッターロゴの高さ */
+    opacity: 0.8; /* 少し薄めに */
+}
+
+.footer-links a {
+    font-weight: bold;
+    color: #555;
+    margin-left: 20px; /* リンク間のマージン */
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #005c78; /* ホバー時に濃い青 */
+    text-decoration: underline;
+}
+
+.copyright-area {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Footer Section レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* 縦積みに変更 */
+        align-items: center; /* 中央揃え */
+        gap: 15px;
+    }
+    .footer-logo-area {
+        margin-bottom: 10px;
+    }
+    .footer-links {
+        display: flex;
+        flex-direction: column; /* リンクも縦に */
+        align-items: center;
+        gap: 10px;
+    }
+    .footer-links a {
+        margin-left: 0;
+    }
+}
+/* style.css */
+.faq-answer {
+    /* ... 他のスタイル ... */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out, padding 0.35s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 400px; /* 表示されるときの十分な高さ */
+    padding-top: 20px; /* 開いたときのパディング調整 */
+    padding-bottom: 25px;
+    opacity: 1;
+}
+
+.faq-item.active .faq-toggle-icon {
+    transform: rotate(135deg); /* アイコンの回転 */
+}
